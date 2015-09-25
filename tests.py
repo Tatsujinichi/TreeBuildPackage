@@ -120,8 +120,8 @@ class Test(unittest.TestCase):
         pass
     
     def testDeleteDbTables(self):
-        builder = self.__createBuilder()
-        builder.DeleteTables()
+        #builder = self.__createBuilder()
+        #builder.DeleteTables()
         #TODO
         pass
     
