@@ -1,0 +1,146 @@
+Weapon,STR,DEX,INT,FTH,Units,Phy,Magic,Fire,Light,Dark,Bleed,Poison,S,Dx,I,F,L,Dk,Weapon Type,Damage Type,Poise Damage,,Durability,Notes
+
+
+								item[0],               #name
+                                mk_int(item[1]),       #str
+                                mk_int(item[2]),       #dex
+                                mk_int(item[3]),       #int
+                                mk_int(item[4]),       #fth
+                                mk_float(item[5]),     #units
+                                mk_int(item[6]),       #phy
+                                mk_int(item[7]),       #magic
+                                mk_int(item[8]),       #fire
+                                mk_int(item[9]),       #light
+                                mk_int(item[10]),      #dark
+                                mk_int(item[11]),      #bleed
+                                mk_int(item[12]),      #poison
+                                item[13],              #s
+                                item[14],              #dx
+                                item[15],              #i
+                                item[16],              #f
+                                item[17],              #l
+                                item[18],              #dk
+                                item[19],              #weapontype
+                                item[20],              #damagetype
+                                mk_int(item[21]),      #poisedamage
+                                mk_int(item[22]))      #durability
+								
+CREATE TABLE weapons (
+	name		varchar(32) PRIMARY KEY,
+	str			smallint NOT NULL,
+	dex			smallint NOT NULL,
+	int			smallint NOT NULL,
+	fth			smallint NOT NULL,
+	units		float NOT NULL,
+	phy			smallint NOT NULL,
+	magic		smallint NOT NULL,
+	fire		smallint NOT NULL,
+	light		smallint NOT NULL,
+	dark		smallint NOT NULL,
+	bleed		smallint NOT NULL,
+	poison		smallint NOT NULL,
+	s			varchar(32) NOT NULL,
+	dx			varchar(32) NOT NULL,
+	i			varchar(32) NOT NULL,
+	f			varchar(32) NOT NULL,
+	l			varchar(32) NOT NULL,
+	dk			varchar(32) NOT NULL,
+	weapontype	varchar(32) NOT NULL,
+	damagetype	varchar(32) NOT NULL,
+	poisedamage	smallint(32) NOT NULL,
+	durability	smallint(32) NOT NULL,
+	location	varchar(32) NOT NULL,
+);
+
+CREATE TABLE armor (
+	name		varchar(32) PRIMARY KEY,
+	str			smallint NOT NULL,
+	dex			smallint NOT NULL,
+	int			smallint NOT NULL,
+	fth			smallint NOT NULL,
+	units		float NOT NULL,
+	phy			smallint NOT NULL,
+	magic		smallint NOT NULL,
+	fire		smallint NOT NULL,
+	light		smallint NOT NULL,
+	dark		smallint NOT NULL,
+	bleed		smallint NOT NULL,
+	poison		smallint NOT NULL,
+	s			varchar(32) NOT NULL,
+	dx			varchar(32) NOT NULL,
+	i			varchar(32) NOT NULL,
+	f			varchar(32) NOT NULL,
+	l			varchar(32) NOT NULL,
+	dk			varchar(32) NOT NULL,
+	weapontype	varchar(32) NOT NULL,
+	damagetype	varchar(32) NOT NULL,
+	poisedamage	smallint(32) NOT NULL,
+	durability	smallint(32) NOT NULL,
+	location	varchar(32) NOT NULL,
+);
+
+CREATE TABLE locations (
+	location
+	bossProgress
+	monsters
+	items
+);
+
+CREATE TABLE items (
+
+);
+
+Things Betwixt
+Majula
+Forest of Fallen Giants
+Heide's Tower of Flame
+Cathedral of Blue
+No-Man's Wharf
+Lost Bastille
+Belfry Luna
+Sinner's Rise
+Huntsman's Copse
+Undead Purgatory
+Harvest Valley
+Earthen Peak
+Iron Keep
+Belfry Sol
+The Pit
+Grave of Saints
+The Gutter
+Black Gulch
+Shaded Woods
+Doors of Pharros
+Brightstone Cove Tseldora
+Shrine of Winter
+Drangleic Castle
+Shrine of Amana
+Undead Crypt
+Aldia's Keep
+Dragon Aerie
+Dragon Shrine
+Dark Chasm of Old
+Memory of Vammar
+Memory of Orro
+Memory of Jeigh
+Dragon Memories
+Throne Of Want
+
+DLC
+Crown of the Sunken King
+Shulva - Sanctum City
+Dragon's Sanctum
+Dragon's Rest
+Cave of the Dead
+Memory of the King
+
+Crown of the Old Iron King
+Brume Tower
+Iron passage
+Memory of the Old Iron King
+
+Crown of the Ivory King
+Frozen Eleum Loyce
+The Cathedral
+Old Chaos
+Frigid Outskirts

@@ -10,6 +10,7 @@ class DBBuilder(object):
 
     def __init__(self, DBConnection):
         self.conneciton = DBConnection
+        self.cfg = config.Config('config.ini')
         
     def CreateTables(self):
         cursor = self.conneciton.Connect()
@@ -40,7 +41,7 @@ class DBBuilder(object):
                         durability    smallint NOT NULL,
                         location    varchar(32)
                         );'''
-                    )
+                        )
         
                
         #TODO
@@ -49,12 +50,17 @@ class DBBuilder(object):
         
     def DeleteTables(self):
         self.conneciton.Connect()
-        #TODO
+        cursor = self.conneciton.Connect()
+        cursor.execute('''\
+                        DROP TABLE WEAPONS
+                        ;'''
+                        ) 
+        self.conneciton.Commit()
         self.conneciton.Disconnect()
         
     def FillTables(self):
         self.conneciton.Connect()
-        weaponsFile = config.Config.config['InputFileFolders']['WeaponsFile']
+        weaponsFile = self.cfg.config['inputFileFolders']['weaponsFile']
         weaponObjectList = dataLoader.DataLoader.LoadFromFileToList(weaponsFile)
         #TODO
         self.conneciton.Disconnect()

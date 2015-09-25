@@ -8,6 +8,8 @@ import os.path
 import dataLoader
 import config
 import dbConnection
+import dbBuilder
+import os
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
@@ -16,23 +18,29 @@ if __name__ == "__main__":
 class Test(unittest.TestCase):
 
     def setUp(self):
-        self.data = dataLoader.DataLoader.LoadFromFileToList(r'E:\Program Files (x86)\Users\playerone\Desktop\weapons.csv')  #TODO: replace with config values
+        #this config is specifically for testing the config module functionality
+        self.testDir = "testData"
+        self.testIniFile = self.testDir + r"\testConfig.ini"
+        
+        if not os.path.exists(self.testDir):
+            os.mkdir(self.testDir)
+        
+        #this config is to be used normally
+        
+        self.cfg = config.Config("config.ini")
+        weaponsFile = self.cfg.config['inputFileFolders']['weaponsFile']
+        self.data = dataLoader.DataLoader.LoadFromFileToList(weaponsFile)
         
         self.sumList = list(self.data)
         self.sumList.sort(key=lambda x: x.StatSum(), reverse=False)
         
         self.strList = list(self.data)
         self.strList.sort(key=lambda x: x.STR, reverse=False)
-        
+    
         self.dexList = list(self.data)
-        self.dexList.sort(key=lambda x: x.DEX, reverse=False)  
-        
-        self.testDir = "testData"
-        self.testIniFile = self.testDir + r"\testConfig.ini"
-        if not os.path.exists(self.testDir):
-            os.mkdir(self.testDir)
+        self.dexList.sort(key=lambda x: x.DEX, reverse=False)           
         pass
-
+    
     def tearDown(self):
         testConfig = config.Config(self.testIniFile)
         testConfig.DeleteConfigFile()
@@ -95,24 +103,40 @@ class Test(unittest.TestCase):
         pass
         
     def testDbConnection(self):
-        dbconn = dbConnection.DBConnection('192.168.1.98', 'h', 'db', 'pw')     #remove values before commit to source control
-        dbconn.Connect()
-        dbconn.Disconnect()
+        builder = self.__createBuilder()
+        #TODO
         pass
         
     def testCreateDbTables(self):
-        dbconn = dbConnection.DBConnection('192.168.1.98', 'h', 'db', 'pw')     #remove values before commit to source control
-        cur = dbconn.Connect()
-        dbconn.Disconnect()
+        builder = self.__createBuilder()
+        builder.CreateTables()
+        #TODO
+        pass
+        
+    def testFillTables(self):
+        builder = self.__createBuilder()
+        builder.FillTables()
+        #TODO
         pass
     
     def testDeleteDbTables(self):
-        dbconn = dbConnection.DBConnection('192.168.1.98', 'h', 'db', 'pw')     #remove values before commit to source control
-        cur = dbconn.Connect()
-        dbconn.Disconnect()
+        builder = self.__createBuilder()
+        builder.DeleteTables()
+        #TODO
         pass
     
-    def createBuilder(self):
+    def __createBuilder(self):
+        host = self.cfg.config['dbConnection']['host']
+        dbname = self.cfg.config['dbConnection']['dbname']
+        user = self.cfg.config['dbConnection']['username']
+        password = self.cfg.config['dbConnection']['password']
+        dbconn = dbConnection.DBConnection(host, dbname, user, password)
+        return dbBuilder.DBBuilder(dbconn)
         pass
     
+    #TODO create something to generate a default config.
+    def createDefaultConfig(self):
+        cfg = config.Config("config.ini")
+        cfg.TryCreateNewConfigFile()
+        pass
     
